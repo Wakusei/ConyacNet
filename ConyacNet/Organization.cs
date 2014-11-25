@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConyacNet
 {
-    public class Conyac
+    class Organization
     {
     }
-
 }
