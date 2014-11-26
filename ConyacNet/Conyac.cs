@@ -8,6 +8,22 @@ namespace ConyacNet
 {
     public class Conyac
     {
+
+
+
+        void GetAccount()
+        {
+            
+        }
+
+
+        void CreateProejct()
+        {
+            
+        }
+
+
+
     }
 
 }
