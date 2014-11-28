@@ -14,34 +14,34 @@ namespace ConyacNet
         public int Id;
 
         [JsonProperty("name")]
-        public bool Name;
+        public string Name;
 
         [JsonProperty("plan_id")]
-        public bool PlanId;
+        public int PlanId;
 
         [JsonProperty("user_id")]
-        public bool UserId;
+        public int UserId;
 
         [JsonProperty("default")]
-        public int Default;
+        public bool Default;
 
         [JsonProperty("description")]
-        public bool Description;
+        public string Description;
 
         [JsonProperty("created_at")]
-        public bool CreatedAt;
+        public DateTime CreatedAt;
 
         [JsonProperty("updated_at")]
-        public bool UpdatedAt;
+        public DateTime UpdatedAt;
 
         [JsonProperty("html_url")]
         public string HtmlUrl;
 
         [JsonProperty("point")]
-        public bool Point;
+        public int Point;
 
         [JsonProperty("available_point")]
-        public bool AvailablePoint;
+        public int AvailablePoint;
         
     }
 
