@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace ConyacNet
@@ -45,12 +42,47 @@ namespace ConyacNet
         [JsonProperty("organization")]
         public Organization Organization;
 
+        [JsonProperty("questions")]
+        public List<Question> Questions;
+
+
+
+        [JsonProperty("language")]
+        public Language Language;
+
+        [JsonProperty("translated_language")]
+        public Language TranslatedLanguage;
+        
     }
 
 
     public class ProjectRequest
     {
-        
+        [JsonProperty("organization_id")]
+        public int OrganizationId;
+
+        [JsonProperty("language_id")]
+        public string LanguageId;
+
+        [JsonProperty("translated_language_id")]
+        public string TranslatedLanguageId;
+
+        [JsonProperty("questions")]
+        public List<QuestionRequest> Questions= new List<QuestionRequest>();
+
+        [JsonProperty("access_token")]
+        public string AccessToken;
+
+    }
+
+
+    public class ProjectResult
+    {
+        public CallResult CallResult;
+
+        [JsonProperty("project")]
+        public Project Project;
+
 
     }
 

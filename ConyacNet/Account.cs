@@ -40,6 +40,7 @@ namespace ConyacNet
 
         [JsonProperty("default_organization")]
         public Organization DefaultOrganization;
+
     }
 
     public class AccountResult

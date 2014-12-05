@@ -20,19 +20,84 @@ namespace Sample
 
         void GetAcessToken()
         {
-            var conyac = new Conyac(null);
-            string token = conyac.GetAccessToken(m_ClientId, m_ClientSecret, m_RedirectUri, m_AuthenticationCode);
+            using (var conyac = new ConyacStandard(null, true))
+            {
+                string token = conyac.GetAccessToken(m_ClientId, m_ClientSecret, m_RedirectUri, m_AuthenticationCode).Result;
 
-            Console.WriteLine(token);
+                Console.WriteLine(token);
+            }
         }
 
         void GetAccount()
         {
-            var conyac = new Conyac(m_AccessToken);
-            var account= conyac.GetAccount();
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var account = conyac.GetAccount();
 
-            Console.WriteLine( account.Account.Login );
+                Console.WriteLine("login:{0}", account.Result.Account.Login);
+                Console.WriteLine("orgid:{0}", account.Result.Account.DefaultOrganizationId);
+
+            }
         }
+
+        void CreateProject()
+        {
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var req = new ProjectRequest();
+
+                req.LanguageId = "en";
+                req.TranslatedLanguageId = "fr";
+                req.OrganizationId = 78;
+
+                var question = new QuestionRequest();
+                question.Type= QuestionType.String;
+                question.Body= "Abc";
+                question.Description = "Tech";
+
+                req.Questions.Add(question);
+
+                var project= conyac.CreateProject(req);
+
+                Console.WriteLine(project.Result.Project.Id);
+            }
+
+        }
+
+        void GetProject()
+        {
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var project = conyac.GetProject(123);
+
+                Console.WriteLine(project.Result.Project.Id);
+            }
+
+        }
+
+        void GetRevisions()
+        {
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var project = conyac.GetRevisions(123);
+
+                Console.WriteLine(project.Result.TotalCount);
+            }
+
+        }
+        
+        void GetRevision()
+        {
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var revision = conyac.GetRevision(123,123);
+
+                Console.WriteLine(revision.Result.Translation.Paragraphs.First().TranslatedText);
+            }
+
+        }
+
+
 
         void LoadCredentials()
         {
@@ -65,6 +130,23 @@ namespace Sample
                 case "GetAccount":
                     prog.GetAccount();
                     break;
+                case "CreateProject":
+                    prog.CreateProject();
+                    break;
+                case "GetProject":
+                    prog.GetProject();
+                    break;
+
+                case "GetRevisions":
+                    prog.GetRevisions();
+                    break;
+
+                case "GetRevision":
+                    prog.GetRevision();
+                    break;
+
+
+
             }
             
         }
