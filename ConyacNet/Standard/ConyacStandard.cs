@@ -143,8 +143,45 @@ namespace ConyacNet.Standard
 
             return resultObj;
         }
-        
 
+
+
+        public async Task<ApplicatoinEventsResult> GetApplicationEvents(int since, bool ascendance)
+        {
+            var url = new UriBuilder(ServiceUrl + ApiPath + "my/application_events");
+            var queryString = GetQueryStringCollection();
+            queryString["since"] = since.ToString(CultureInfo.InvariantCulture);
+            if (ascendance)
+            {
+                queryString["order"] = "id_asc";
+            }
+            else
+            {
+                queryString["order"] = "id_desc";
+            }
+            url.Query = queryString.ToString();
+
+            var response = await m_Client.GetStringAsync(url.Uri);
+
+            var resultObj = JsonConvert.DeserializeObject<ApplicatoinEventsResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
+
+            return resultObj;
+        }
+
+        public async Task<ApplicatoinEventResult> GetApplicationEvent(int id)
+        {
+            var url = new UriBuilder(ServiceUrl + ApiPath + "my/application_events/" + id.ToString(CultureInfo.InvariantCulture));
+            var queryString = GetQueryStringCollection();
+            url.Query = queryString.ToString();
+
+            var response = await m_Client.GetStringAsync(url.Uri);
+
+            var resultObj = JsonConvert.DeserializeObject<ApplicatoinEventResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
+
+            return resultObj;
+        }
 
 
 

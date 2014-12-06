@@ -101,23 +101,59 @@ namespace Sample
         {
             using (var conyac = new ConyacSimple(m_AccessToken, true))
             {
-                var proj = new SimpleQuestionRequest();
-                proj.LanguageId = "en";
-                proj.TranslatedLanguageId= "fr";
-                proj.Public = false;
-                proj.Description = "tech";
-                proj.TagText = "tech";
+                var proj = new SimpleQuestionRequest
+                {
+                    LanguageId = "en",
+                    TranslatedLanguageId = "fr",
+                    Public = false,
+                    Description = "tech",
+                    TagText = "tech"
+                };
 
                 var body = new SimpleQuestionBodyRequest();
                 body.Body = "abc";
                 proj.QuestionBodies.Add(body);
 
-                var revision = conyac.CreateProject(proj);
+                // Check
+                Console.WriteLine("Check: {0}",conyac.CheckQuestion(proj).Result.CallResult.Success);
 
-                Console.WriteLine(revision.Result.Question.Id);
+                // Create
+                var questionResult = conyac.CreateQuestion(proj);
+                Console.WriteLine(questionResult.Result.Question.Id);
+
+                // Get
+                var questionRetrieved= conyac.GetQuestion(questionResult.Result.Question.Id);
+                Console.WriteLine("Retreive: {0}", questionRetrieved.Result.CallResult.Success);
             }
 
         }
+
+        void SimpleGetTranslation()
+        {
+            using (var conyac = new ConyacSimple(m_AccessToken, true))
+            {
+                var translation = conyac.GetTranslation(123);
+
+                Console.WriteLine(translation.Result.Translatoin.Body);
+            }
+
+        }
+
+        void GetApplicationEvents()
+        {
+            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            {
+                var events = conyac.GetApplicationEvents(0, true);
+
+                Console.WriteLine(events.Result.CallResult.Success);
+
+                // event
+                var eventObj= conyac.GetApplicationEvent(events.Result.Events.First().Id);
+                Console.WriteLine("event: {0}", eventObj.Result.Event.Id);
+            }
+
+        }
+
 
 
 
@@ -152,7 +188,7 @@ namespace Sample
                 case "GetAccount":
                     prog.GetAccount();
                     break;
-                case "CreateProject":
+                case "CreateQuestion":
                     prog.CreateProject();
                     break;
                 case "GetProject":
@@ -167,10 +203,22 @@ namespace Sample
                     prog.GetRevision();
                     break;
 
+                case "GetApplicationEvents":
+                    prog.GetApplicationEvents();
+                    break;
+
+
+
 
                 case "SimpleCreateQuestion":
                     prog.SimpleCreateQuestion();
                     break;
+
+                case "SimpleGetTranslation":
+                    prog.SimpleGetTranslation();
+                    break;
+
+
 
 
 

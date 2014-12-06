@@ -25,7 +25,7 @@ namespace ConyacNet.Simple
         }
 
 
-        public async Task<SimpleQuestionResult> CreateProject(SimpleQuestionRequest project)
+        public async Task<SimpleQuestionResult> CreateQuestion(SimpleQuestionRequest project)
         {
             var url = new UriBuilder(ServiceUrl + ApiPath + "questions");
             project.AccessToken = m_AccessToken;
@@ -38,7 +38,7 @@ namespace ConyacNet.Simple
             return resultObj;
         }
 
-        public async Task<SimpleQuestionResult> CheckProject(ProjectRequest project)
+        public async Task<SimpleQuestionResult> CheckQuestion(SimpleQuestionRequest project)
         {
             var url = new UriBuilder(ServiceUrl + ApiPath + "projects/check");
             project.AccessToken = m_AccessToken;
@@ -94,6 +94,7 @@ namespace ConyacNet.Simple
 
             return resultObj;
         }
+
 
 
 

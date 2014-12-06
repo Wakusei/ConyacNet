@@ -54,6 +54,7 @@
     <Compile Include="Simple\SimpleQuestion.cs" />
     <Compile Include="Simple\SimpleQuestionBody.cs" />
     <Compile Include="Simple\SimpleTranslation.cs" />
+    <Compile Include="Standard\Event.cs" />
     <Compile Include="Standard\User.cs" />
     <Compile Include="ConyacBase.cs" />
     <Compile Include="Simple\ConyacSimple.cs" />
