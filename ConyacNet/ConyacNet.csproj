@@ -51,21 +51,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
+    <Compile Include="Simple\SimpleQuestion.cs" />
+    <Compile Include="Simple\SimpleQuestionBody.cs" />
+    <Compile Include="Simple\SimpleTranslation.cs" />
+    <Compile Include="Standard\User.cs" />
     <Compile Include="ConyacBase.cs" />
-    <Compile Include="ConyacLight.cs" />
-    <Compile Include="ConyacStandard.cs" />
-    <Compile Include="Language.cs" />
-    <Compile Include="Organization.cs" />
-    <Compile Include="Paragraph.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="Simple\ConyacSimple.cs" />
+    <Compile Include="Standard\ConyacStandard.cs" />
+    <Compile Include="Standard\Language.cs" />
+    <Compile Include="Standard\Organization.cs" />
+    <Compile Include="Standard\Paragraph.cs" />
+    <Compile Include="Standard\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="Revision.cs" />
+    <Compile Include="Standard\Question.cs" />
+    <Compile Include="Standard\Revision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

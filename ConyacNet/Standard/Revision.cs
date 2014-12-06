@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ConyacNet
+namespace ConyacNet.Standard
 {
 
     public class Revision

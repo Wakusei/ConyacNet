@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace ConyacNet
+namespace ConyacNet.Standard
 {
 
 
-    public class Account
+    public class User
     {
         [JsonProperty("id")]
         public int Id;
@@ -47,7 +47,7 @@ namespace ConyacNet
     {
         public CallResult CallResult;
 
-        public Account Account;
+        public User User;
 
     }
 

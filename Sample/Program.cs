@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConyacNet;
+using ConyacNet.Simple;
+using ConyacNet.Standard;
 
 namespace Sample
 {
@@ -34,8 +35,8 @@ namespace Sample
             {
                 var account = conyac.GetAccount();
 
-                Console.WriteLine("login:{0}", account.Result.Account.Login);
-                Console.WriteLine("orgid:{0}", account.Result.Account.DefaultOrganizationId);
+                Console.WriteLine("login:{0}", account.Result.User.Login);
+                Console.WriteLine("orgid:{0}", account.Result.User.DefaultOrganizationId);
 
             }
         }
@@ -45,7 +46,6 @@ namespace Sample
             using (var conyac = new ConyacStandard(m_AccessToken, true))
             {
                 var req = new ProjectRequest();
-
                 req.LanguageId = "en";
                 req.TranslatedLanguageId = "fr";
                 req.OrganizationId = 78;
@@ -97,6 +97,28 @@ namespace Sample
 
         }
 
+        void SimpleCreateQuestion()
+        {
+            using (var conyac = new ConyacSimple(m_AccessToken, true))
+            {
+                var proj = new SimpleQuestionRequest();
+                proj.LanguageId = "en";
+                proj.TranslatedLanguageId= "fr";
+                proj.Public = false;
+                proj.Description = "tech";
+                proj.TagText = "tech";
+
+                var body = new SimpleQuestionBodyRequest();
+                body.Body = "abc";
+                proj.QuestionBodies.Add(body);
+
+                var revision = conyac.CreateProject(proj);
+
+                Console.WriteLine(revision.Result.Question.Id);
+            }
+
+        }
+
 
 
         void LoadCredentials()
@@ -143,6 +165,11 @@ namespace Sample
 
                 case "GetRevision":
                     prog.GetRevision();
+                    break;
+
+
+                case "SimpleCreateQuestion":
+                    prog.SimpleCreateQuestion();
                     break;
 
 

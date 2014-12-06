@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ConyacNet
+namespace ConyacNet.Standard
 {
     public class Project
     {

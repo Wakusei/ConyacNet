@@ -10,17 +10,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ConyacNet
+namespace ConyacNet.Standard
 {
-    public class CallResult
-    {
-        [JsonProperty("success")]
-        public bool Success;
 
-        [JsonProperty("message")]
-        public string Message;
-
-    }
 
 
 
@@ -38,39 +30,6 @@ namespace ConyacNet
         }
 
 
-        async Task<string> PostJson(Uri url, string json)
-        {
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            
-            var result= await m_Client.PostAsync(url, content);
-            var responseBody= await result.Content.ReadAsStringAsync();
-
-            return responseBody;
-        }
-
-        private CallResult ParseCallResult(string result)
-        {
-            return JsonConvert.DeserializeObject<CallResult>(result);
-        }
-
-        private NameValueCollection GetQueryStringCollection()
-        {
-            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
-            queryString["access_token"] = m_AccessToken;
-            return queryString;
-        }
-
-        public string ServiceUrl
-        {
-            get
-            {
-                if (m_UseDevelopmentService)
-                {
-                    return StrServiceUrlDev;
-                }
-                return StrServiceUrl;
-            }
-        }
 
 
 
@@ -109,7 +68,7 @@ namespace ConyacNet
 
             var resultObj = new AccountResult();
             resultObj.CallResult = ParseCallResult(response);
-            resultObj.Account= JsonConvert.DeserializeObject<Account>(response);
+            resultObj.User= JsonConvert.DeserializeObject<User>(response);
 
             return resultObj;
         }
@@ -122,7 +81,8 @@ namespace ConyacNet
             var response= await PostJson(url.Uri, JsonConvert.SerializeObject(project));
 
             var resultObj =  JsonConvert.DeserializeObject<ProjectResult>(response);
-            
+            resultObj.CallResult = ParseCallResult(response);
+
             return resultObj;
         }
 
@@ -134,6 +94,7 @@ namespace ConyacNet
             var response = await PostJson(url.Uri, JsonConvert.SerializeObject(project));
 
             var resultObj = JsonConvert.DeserializeObject<ProjectResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
 
             return resultObj;
         }
@@ -147,6 +108,7 @@ namespace ConyacNet
             var response = await m_Client.GetStringAsync(url.Uri);
 
             var resultObj = JsonConvert.DeserializeObject<ProjectResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
 
             return resultObj;
         }
@@ -161,6 +123,7 @@ namespace ConyacNet
             var response = await m_Client.GetStringAsync(url.Uri);
 
             var resultObj = JsonConvert.DeserializeObject<RevisionsResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
 
             return resultObj;
         }
@@ -176,6 +139,7 @@ namespace ConyacNet
             var response = await m_Client.GetStringAsync(url.Uri);
 
             var resultObj = JsonConvert.DeserializeObject<RevisionResult>(response);
+            resultObj.CallResult = ParseCallResult(response);
 
             return resultObj;
         }
