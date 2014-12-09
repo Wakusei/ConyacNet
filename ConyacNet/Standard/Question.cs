@@ -49,19 +49,19 @@ namespace ConyacNet.Standard
         public string HtmlUrl;
 
         [JsonProperty("language_id")]
-        public int LanguageId;
+        public string LanguageId;
 
         [JsonProperty("translated_language_id")]
-        public int TranslatedLanguageId;
+        public string TranslatedLanguageId;
 
         [JsonProperty("paragraphs")]
         public string Paragraphs;
 
         [JsonProperty("language")]
-        public string Language;
+        public Language Language;
 
         [JsonProperty("translated_language")]
-        public string TranslatedLanguage;
+        public Language TranslatedLanguage;
 
     }
 

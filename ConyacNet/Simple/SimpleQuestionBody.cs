@@ -16,7 +16,7 @@ namespace ConyacNet.Simple
         public int QuestionId;
 
         [JsonProperty("display_order")]
-        public string DisplayOrder;
+        public int DisplayOrder;
 
         [JsonProperty("body")]
         public string Body;

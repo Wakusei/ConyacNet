@@ -27,7 +27,7 @@ namespace ConyacNet.Simple
         public int UserId;
 
         [JsonProperty("trainee")]
-        public int Trainee;
+        public bool Trainee;
 
         [JsonProperty("posted_at")]
         public DateTime PostedAt;
@@ -37,10 +37,7 @@ namespace ConyacNet.Simple
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt;
-
-        [JsonProperty("itranslated_at")]
-        public DateTime TranslatedAt;
-
+        
         [JsonProperty("comments_count")]
         public int CommentsCount;
 
@@ -53,7 +50,7 @@ namespace ConyacNet.Simple
     {
         public CallResult CallResult;
 
-        [JsonProperty("translatoin")]
+        [JsonProperty("translation")]
         public SimpleTranslation Translatoin;
 
     }

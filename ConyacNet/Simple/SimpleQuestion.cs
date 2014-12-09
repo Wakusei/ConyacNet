@@ -126,13 +126,73 @@ namespace ConyacNet.Simple
     }
 
 
-    public class SimpleQuestionResult
+    public class SimpleQuestionCheck
     {
-        public CallResult CallResult;
+        [JsonProperty("description")]
+        public string Description;
 
-        [JsonProperty("question")]
-        public SimpleQuestion Question;
+        [JsonProperty("user_id")]
+        public int UserId;
 
+        [JsonProperty("organization_id")]
+        public int OrganizationId;
+
+        [JsonProperty("LetterCount")]
+        public int LetterCount;
+
+        [JsonProperty("PublishedScope")]
+        public int PublishedScope;
+
+        [JsonProperty("status")]
+        public int Status;
+
+        [JsonProperty("status_text")]
+        public string StatusText;
+
+        [JsonProperty("total_point")]
+        public int TotalPoint;
+        
+        [JsonProperty("Url")]
+        public string Url;
+
+        [JsonProperty("html_url")]
+        public string HtmlUrl;
+
+        [JsonProperty("language_id")]
+        public string LanguageId;
+
+        [JsonProperty("translated_language_id")]
+        public string TranslatedLanguageId;
+
+        [JsonProperty("views_count")]
+        public int ViewsCount;
+
+        [JsonProperty("published_at")]
+        public DateTime PublishedAt;
+
+        [JsonProperty("expires_at")]
+        public DateTime ExpiresAt;
+
+        [JsonProperty("translations_count")]
+        public int TranslationsCount;
+
+        [JsonProperty("working_translations_count")]
+        public int WorkingTranslationsCount;
+
+        [JsonProperty("individual")]
+        public bool Individual;
+
+        [JsonProperty("question_bodies")]
+        public List<SimpleQuestionBody> QuestionBodies;
+
+        [JsonProperty("language")]
+        public Language Language;
+
+        [JsonProperty("translated_language")]
+        public Language TranslatedLanguage;
+
+        [JsonProperty("user")]
+        public User User;
     }
 
 
@@ -142,6 +202,25 @@ namespace ConyacNet.Simple
         [JsonProperty("body")]
         public string Body;
 
+
+    }
+    
+
+    public class SimpleQuestionResult
+    {
+        public CallResult CallResult;
+
+        [JsonProperty("question")]
+        public SimpleQuestion Question;
+
+    }
+
+    public class SimpleQuestionCheckResult
+    {
+        public CallResult CallResult;
+
+        [JsonProperty("question")]
+        public SimpleQuestionCheck Question;
 
     }
 

@@ -38,14 +38,14 @@ namespace ConyacNet.Simple
             return resultObj;
         }
 
-        public async Task<SimpleQuestionResult> CheckQuestion(SimpleQuestionRequest project)
+        public async Task<SimpleQuestionCheckResult> CheckQuestion(SimpleQuestionRequest project)
         {
-            var url = new UriBuilder(ServiceUrl + ApiPath + "projects/check");
+            var url = new UriBuilder(ServiceUrl + ApiPath + "questions/check");
             project.AccessToken = m_AccessToken;
 
             var response = await PostJson(url.Uri, JsonConvert.SerializeObject(project));
 
-            var resultObj = JsonConvert.DeserializeObject<SimpleQuestionResult>(response);
+            var resultObj = JsonConvert.DeserializeObject<SimpleQuestionCheckResult>(response);
             resultObj.CallResult = ParseCallResult(response);
 
             return resultObj;

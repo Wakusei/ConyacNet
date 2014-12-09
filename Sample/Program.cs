@@ -17,11 +17,12 @@ namespace Sample
         private string m_AuthenticationCode;
         private string m_AccessToken;
 
+        private bool m_Development = true;
 
 
         void GetAcessToken()
         {
-            using (var conyac = new ConyacStandard(null, true))
+            using (var conyac = new ConyacStandard(null, m_Development))
             {
                 string token = conyac.GetAccessToken(m_ClientId, m_ClientSecret, m_RedirectUri, m_AuthenticationCode).Result;
 
@@ -31,7 +32,7 @@ namespace Sample
 
         void GetAccount()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
                 var account = conyac.GetAccount();
 
@@ -43,7 +44,7 @@ namespace Sample
 
         void CreateProject()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
                 var req = new ProjectRequest();
                 req.LanguageId = "en";
@@ -66,7 +67,7 @@ namespace Sample
 
         void GetProject()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
                 var project = conyac.GetProject(123);
 
@@ -77,7 +78,7 @@ namespace Sample
 
         void GetRevisions()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
                 var project = conyac.GetRevisions(123);
 
@@ -88,7 +89,7 @@ namespace Sample
         
         void GetRevision()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
                 var revision = conyac.GetRevision(123,123);
 
@@ -99,7 +100,7 @@ namespace Sample
 
         void SimpleCreateQuestion()
         {
-            using (var conyac = new ConyacSimple(m_AccessToken, true))
+            using (var conyac = new ConyacSimple(m_AccessToken, m_Development))
             {
                 var proj = new SimpleQuestionRequest
                 {
@@ -130,20 +131,29 @@ namespace Sample
 
         void SimpleGetTranslation()
         {
-            using (var conyac = new ConyacSimple(m_AccessToken, true))
+            using (var conyac = new ConyacSimple(m_AccessToken, m_Development))
             {
-                var translation = conyac.GetTranslation(123);
+                var question = conyac.GetQuestion(123);
 
-                Console.WriteLine(translation.Result.Translatoin.Body);
+                Console.WriteLine("# of translations: {0}",
+                    question.Result.Question.QuestionBodies.First().Translations.Count);
+
+                foreach (var simpleTranslation in question.Result.Question.QuestionBodies.First().Translations)
+                {
+                    var translation = conyac.GetTranslation(simpleTranslation.Id);
+
+                    Console.WriteLine("id: {0}, body: {1}", translation.Result.Translatoin.Id, translation.Result.Translatoin.Body);
+                }
+
             }
 
         }
 
         void GetApplicationEvents()
         {
-            using (var conyac = new ConyacStandard(m_AccessToken, true))
+            using (var conyac = new ConyacStandard(m_AccessToken, m_Development))
             {
-                var events = conyac.GetApplicationEvents(0, true);
+                var events = conyac.GetApplicationEvents(100, true);
 
                 Console.WriteLine(events.Result.CallResult.Success);
 
@@ -166,7 +176,9 @@ namespace Sample
             m_ClientSecret = lines[2];
             m_AuthenticationCode = lines[3];
             m_AccessToken = lines[4];
-            
+
+            m_Development = true;
+
         }
 
         
