@@ -5,4 +5,6 @@ ConyacNet
 
 This is under development. There will be breaking changes in the future release.
 
+License: Apache License 2.0
+
 
