@@ -190,3 +190,4 @@ ModelManifest.xml
 /Sample/Credentials/Credentials.txt
 /Sample/Credentials/CredentialsDev.txt
 /Sample/Credentials/CredentialsProduction.txt
+/ConyacNet/*.nupkg

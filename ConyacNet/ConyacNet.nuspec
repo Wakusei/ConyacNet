@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/Wakusei/ConyacNet</projectUrl>
-    <iconUrl>coynacnet.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/Wakusei/ConyacNet/master/conyacnet.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Subject to change.</releaseNotes>
