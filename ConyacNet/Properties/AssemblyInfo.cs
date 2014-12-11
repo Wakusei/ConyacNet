@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Altere o valor destes atributos para modificar a informação
 // associada a um assembly.
 [assembly: AssemblyTitle("ConyacNet")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET client for conyac.cc, transltaion service with crowdsourcing.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Sen Harada")]
 [assembly: AssemblyProduct("ConyacNet")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // É possível especificar todos os valores ou usar o padrão de Números de Compilação e Revisão 
 // utilizando o '*' como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.0.0")]
+[assembly: AssemblyFileVersion("0.1.0.0")]
